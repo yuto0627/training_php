@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  # PHP + Apache
+  web:
+    container_name: board_web
+    # ./docker/web/Dockerfile でイメージをビルド
+    build: ./docker/web/
+    volumes:
+      - "../html:/var/www/html"
+    # 80 ポートをコンテナの 80 ポートに割り当て
+    ports:
+      - 8080:80
+    depends_on:
+      - db
+
+  # PostgreSQL
+  db:
+    container_name: board_database
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: board_database
+    volumes:
+      - "./initdb:/docker-entrypoint-initdb.d"
+    ports:
+      - 5433:5433
