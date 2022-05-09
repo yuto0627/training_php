@@ -25,4 +25,5 @@ services:
     volumes:
       - "./initdb:/docker-entrypoint-initdb.d"
     ports:
-      - 5433:5433
+      - 5555:5555
+    command: -p 5555
