@@ -5,12 +5,12 @@ services:
   web:
     container_name: board_web
     # ./docker/web/Dockerfile でイメージをビルド
-    build: ./docker/web/
+    build: ./web/
     volumes:
       - "../html:/var/www/html"
     # 80 ポートをコンテナの 80 ポートに割り当て
     ports:
-      - 8080:80
+      - 8090:80
     depends_on:
       - db
 
