@@ -1,8 +1,4 @@
 # training_php
-dockerフォルダに移動
-```
-cd docker
-```
 
 コンテナ起動
 ```
