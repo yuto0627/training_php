@@ -5,9 +5,9 @@ services:
   web:
     container_name: board_web
     # ./docker/web/Dockerfile でイメージをビルド
-    build: ./web/
+    build: ./docker/web/
     volumes:
-      - "../html:/var/www/html"
+      - ".:/var/www/html"
     # 80 ポートをコンテナの 80 ポートに割り当て
     ports:
       - 8090:80
