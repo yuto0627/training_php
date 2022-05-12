@@ -12,7 +12,7 @@
     </div>
 
     <div class="return_button">
-        <button onclick="location.href='login'">戻る</button>
+        <input onclick="location.href='../../../index.php'" value="戻る">
     </div>
 
     <div class="login_screen upper">
@@ -35,13 +35,11 @@
         <div class="login_screen">
                 <input type="text" placeholder="パスワード">
                 <input type="text" placeholder="パスワード確認">
-            </form>
         </div>
 
         <div class="login_button">
             <button onclick="location.href='login'">登録する</button>
         </div>
-        
     </div>
 </body>
 </html>
