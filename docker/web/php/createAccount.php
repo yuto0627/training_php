@@ -11,7 +11,9 @@
                 Bulletine Board
             </header>
         </div>
-
+        <form type="submit" class="return_button">
+            <input onclick="location.href='../../../index.php'" value="戻る">
+        </form>
         <div class="login_screen upper">
             <h1>Bulletine Board</h1>
             <p class="login_letter">新規追加画面</p>
@@ -25,12 +27,11 @@
 
             <div>
                 <input type="text" value="" placeholder="ユーザーID">
-                <div id="password_bottom">
+                <div class="password_bottom">
                     <input type="text" value="" placeholder="パスワード">
-                    <input type="text" value="" placeholder="パスワード確認">
                 </div>
+                    <input type="text" value="" placeholder="パスワード確認">
             </div>
-
             <div>
                 <div class="login_button">
                     <form type="submit">

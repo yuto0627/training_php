@@ -12,6 +12,18 @@
     font-family: sans-serif;
 }
 
+.return_button input {
+    background-color: rgba(238, 180, 72, 0.865);
+    border-radius: 10px;
+    border: solid 1px rgb(96, 96, 103);
+    width: 120px;
+    height: 50px;
+    margin-top: 17px;
+    margin-left: 17px;
+    color:rgb(96, 96, 103);
+    text-align: center;
+}
+
 .login_screen {
     text-align: center;
     color:rgb(96, 96, 103);
@@ -24,8 +36,9 @@
 
 .upper {
     line-height: 0.5;
-    margin-top: 60px;
+    margin-top: 10px;
     margin-bottom: 50px;
+
 }
 
 .greybox {
@@ -53,8 +66,9 @@ input {
     margin-top: 15px;
 }
 
-#password_bottom {
+.password_bottom input {
     line-height: 0.5;
+    margin-bottom: -10px;
 }
 
 .login_button button {
