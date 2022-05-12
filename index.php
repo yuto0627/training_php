@@ -5,7 +5,7 @@
 </head>
 
 <body>
-    <div class="boddy">
+    <div class="body">
         <div class="header_left">
             <header class="header_letter">
                 Bulletine Board
