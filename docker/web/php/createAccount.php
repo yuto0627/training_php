@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="../css/createAccount.css">
 </head>
 
 <body>
@@ -14,28 +14,28 @@
 
         <div class="login_screen upper">
             <h1>Bulletine Board</h1>
-            <p class="login_letter">ログイン画面</p>
+            <p class="login_letter">新規追加画面</p>
         </div>
 
         <div class="login_screen greybox">
             <div>
-                <h2>ログイン</h2>
-                <p>ユーザーIDとパスワードを入力してください。</p>
+                <h2>新規追加</h2>
+                <p>ユーザーIDとパスワードを登録してください。</p>
             </div>
 
             <div>
                 <input type="text" value="" placeholder="ユーザーID">
-                <input type="text" value="" placeholder="パスワード">
+                <div id="password_bottom">
+                    <input type="text" value="" placeholder="パスワード">
+                    <input type="text" value="" placeholder="パスワード確認">
+                </div>
             </div>
 
             <div>
                 <div class="login_button">
                     <form type="submit">
-                        <button onclick="location.href='login'">ログインする</button>
+                        <button onclick="location.href='login'">登録する</button>
                     </form>
-                </div>
-                <div>
-                    <a href="docker/web/php/createAccount.php">新規追加はこちら</a>
                 </div>
             </div>
         </div>
