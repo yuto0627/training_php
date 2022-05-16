@@ -1,8 +1,8 @@
-.header_left {
+.header-left {
     background-color: rgb(36, 113, 221);
 }
 
-.return_button button {
+.return-button input {
     text-align: center;
     width: 150px;
     height: 50px;
@@ -15,14 +15,14 @@
     border-radius: 10px;
 }
 
-.header_letter {
+.header-letter {
     color: white;
     padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 30px;
 }
 
-.login_screen {
+.login-screen {
     text-align: center;
     color: rgb(96, 96, 103)
 }
@@ -41,7 +41,7 @@
     padding-bottom: 25px;
 }
 
-.login_screen h2{
+.login-screen h2{
     margin-top: 20px;
     margin-bottom: 0px;
     padding-top: 20px;
@@ -58,36 +58,39 @@
     border-radius: 20px;
 }
 
-.createaccount_screen input {
+.createaccount-screen input {
     width: 450px;
     height: 45px;
     display:block;
     padding: 10px 10px;
     margin-top: 10px;
     margin-right: auto;
-    margin-bottom: 20px;
     margin-left: auto;
     text-align: left;
     border-radius: 10px;
     border: solid 1px rgb(96, 96, 103);
 }
 
-.login_screen input {
+.login-screen input {
     width: 450px;
     height: 45px;
     display:block;
     padding: 10px 10px;
-    margin: 10 auto;
+    margin-top: 10px;
+    margin-right: auto;
+    margin-bottom: -5px;
+    margin-left: auto;
     text-align: left;
     border-radius: 10px;
     border: solid 1px rgb(96, 96, 103);
 }
 
-.login_button button {
+.login-button button {
     text-align: center;
     width: 300px;
     height: 55px;
     padding: 10px 40px;
+    margin-top: 30px;
     color: rgb(29, 28, 28);
     background-color: rgb(131, 234, 76);
     border: solid 1px rgb(96, 96, 103);
