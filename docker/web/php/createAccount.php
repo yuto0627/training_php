@@ -35,11 +35,14 @@
         <div class="login-screen">
             <input type="text" placeholder="パスワード">
             <input type="text" placeholder="パスワード確認">
+            <<<<<<< Updated upstream=======</form>
+                >>>>>>> Stashed changes
         </div>
 
         <div class="login-button">
             <button onclick="location.href='login'">登録する</button>
         </div>
+        <<<<<<< Updated upstream=======>>>>>>> Stashed changes
     </div>
 </body>
 
