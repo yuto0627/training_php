@@ -40,4 +40,20 @@ class usersTable
             echo $e->getMessage();
         }
     }
+
+    public function login($userId, $password)
+    {
+        try {
+            $dbo = $this->db();
+            $sql = "SELECT * FROM users WHERE seq_no = :seqNo";
+            $stmt = $dbo->prepare($sql);
+            $stmt->bindValue(':seqNo', $seqNo);
+            $stmt->execute();
+            $users = $stmt->fetchAll();
+
+            header('Location: ');
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
 }
