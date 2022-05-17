@@ -25,7 +25,7 @@
 
             <div>
                 <input type="text" value="" placeholder="ユーザーID">
-                <input type="text" value="" placeholder="パスワード">
+                <input type="password" value="" placeholder="パスワード">
             </div>
 
             <div>
