@@ -25,7 +25,7 @@
         <div class="login-screen">
             <form method="post" action="login">
                 <input type="text" placeholder="ユーザーID">
-                <input type="text" placeholder="パスワード">
+                <input type="password" placeholder="パスワード">
             </form>
         </div>
 

@@ -1,3 +1,26 @@
+<?php
+
+require_once('validationUtil.php');
+require_once('../../db/usersTable.php');
+
+// 登録ボタンが押された時
+if (isset($_POST["signUp"])) {
+    $userId = htmlspecialchars($_POST["userId"], ENT_QUOTES);
+    $password = ($_POST["password"]);
+    $passwordCheck = ($_POST["passwordCheck"]);
+    $passwordHash = password_hash($_POST["password"], PASSWORD_DEFAULT);
+    $passwordCheckHash = password_hash($_POST["passwordCheck"], PASSWORD_DEFAULT);
+    $validationCheck = new validationUtil();
+    $errorMessage = $validationCheck->validation($userId, $password, $passwordCheck);
+    if (!empty($errorMessage)) {
+        echo "<script>alert('$errorMessage')</script>";
+    } else {
+        $data = new usersTable();
+        $data->regist($userId, $passwordHash);
+    }
+}
+?>
+
 <html>
 
 <head>
@@ -26,20 +49,21 @@
             <p>ユーザーIDとパスワードを登録してください。</p>
         </div>
 
-        <div class="createaccount-screen">
-            <form method="post" action="login">
-                <input type="text" placeholder="ユーザーID">
-            </form>
-        </div>
+        <form action="" method="post">
+            <div class="createaccount-screen">
+                <input type="text" maxlength="20" name="userId" placeholder="ユーザーID">
+            </div>
 
-        <div class="login-screen">
-            <input type="text" placeholder="パスワード">
-            <input type="text" placeholder="パスワード確認">
-        </div>
+            <div class="login-screen">
+                <input type="password" maxlength="30" name="password" placeholder="パスワード">
+                <input type="password" maxlength="30" name="passwordCheck" placeholder="パスワード確認">
+            </div>
 
-        <div class="login-button">
-            <button onclick="location.href='login'">登録する</button>
-        </div>
+            <div class="login-button">
+                <input type="submit" name="signUp" value="登録する">
+            </div>
+        </form>
+    </div>
     </div>
 </body>
 
