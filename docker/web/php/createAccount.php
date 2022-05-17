@@ -51,12 +51,13 @@ if (isset($_POST["signUp"])) {
 
         <form action="" method="post">
             <div class="createaccount-screen">
-                <input type="text" maxlength="20" name="userId" placeholder="ユーザーID">
+                <input type="text" maxlength="20" pattern=“^[0-9A-Za-z]+$” name="userId" placeholder="ユーザーID">
             </div>
 
             <div class="login-screen">
-                <input type="password" maxlength="30" name="password" placeholder="パスワード">
-                <input type="password" maxlength="30" name="passwordCheck" placeholder="パスワード確認">
+                <input type="password" maxlength="30" pattern=“^[0-9A-Za-z]+$” name="password" placeholder="パスワード">
+                <input type="password" maxlength="30" pattern=“^[0-9A-Za-z]+$” name="passwordCheck"
+                    placeholder="パスワード確認">
             </div>
 
             <div class="login-button">

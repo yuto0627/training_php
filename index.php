@@ -24,8 +24,8 @@
 
         <div class="login-screen">
             <form method="post" action="login">
-                <input type="text" placeholder="ユーザーID">
-                <input type="password" placeholder="パスワード">
+                <input type="text" maxlength="20" pattern=“^[0-9A-Za-z]+$” placeholder="ユーザーID">
+                <input type="password" maxlength="30" pattern=“^[0-9A-Za-z]+$” placeholder="パスワード">
             </form>
         </div>
 
