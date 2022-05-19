@@ -22,6 +22,8 @@ class usersTable
      * 
      * @param string $userid　ユーザーID
      * @param string $password パスワード
+     * 
+     * @return void
      */
     public function userRegist($userid, $password)
     {
