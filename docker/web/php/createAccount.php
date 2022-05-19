@@ -1,23 +1,21 @@
 <?php
-require_once('createAccountController.php');
+require_once('Validation.php');
 require_once('../../db/usersTable.php');
 
 //登録するボタンが押された場合
 //issetが引数に指定した変数に値が設定されている
 if (isset($_POST["signUp"])) {
-    $userId = htmlspecialchars($_POST["userId"], ENT_QUOTES);
+    $userid = htmlspecialchars($_POST["userId"], ENT_QUOTES);
     $password = $_POST['password'];
-    $passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $passwordConfirm = $_POST['passwordConfirm'];
-    $passwordConfirmHash = password_hash($_POST['passwordConfirm'], PASSWORD_DEFAULT);
-    $validationCheck = new validationUtil();
-    $errorMessage = $validationCheck->validation($userId, $password, $passwordConfirm);
-    if (!empty($errorMessage)) {
-        $alerts = "<script type='text/javascript'>alert('$errorMessage');</script>";
+    $passwordconfirm = $_POST['passwordConfirm'];
+    $validationcheck = new Validation();
+    $errormessage = $validationcheck->userRegistValidation($userid, $password, $passwordconfirm);
+    if (!empty($errormessage)) {
+        $alerts = "<script type='text/javascript'>alert('$errormessage');</script>";
         echo $alerts;
     } else {
         $registration = new usersTable();
-        $registration->regist($userId, $passwordHash);
+        $registration->userRegist($userid, $password);
     }
 } ?>
 

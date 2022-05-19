@@ -1,36 +1,35 @@
 <?php
-require_once('../../db/usersTable.php'); //importと同じ役割
+require_once('ValidationUtil.php');
 
-class validationUtil
+class Validation
 {
 
-    public function validation($userId, $password, $passwordConfirm)
+    public function userRegistValidation($userid, $password, $passwordconfirm)
     {
-        $signUp = new usersTable();
         $alert = "";
 
         //未入力チェック
-        if (empty($userId || $password || $passwordConfirm)) {
+        if (empty($userid || $password || $passwordconfirm)) {
             $alert = $alert . "未入力の項目があります。" . '\n';
         }
 
         //ユーザーIDの半角英数・文字数制限チェック
-        if (!preg_match("/^[a-zA-Z0-9]+$/", $userId) || (mb_strlen($userId > 20))) {
+        if (!ValidationUtil::isHanEisu($userid) || !ValidationUtil::isMaxLength($userid, 20)) {
             $alert = $alert . "ユーザーIDは半角英数入力20文字以下でしてください。" . '\n';
         }
 
         //パスワードの半角英数・文字数制限チェック
-        if (!preg_match("/^[a-zA-Z0-9]+$/", $password) || mb_strlen($password > 30)) {
-            $alert = $alert . "パスワードは半角英数30文字以下で入力してください。" . '\n';
+        if (!ValidationUtil::isHanEisu($password) || !ValidationUtil::isMaxLength($password, 30)) {
+            $alert = $alert . "パスワードは半角英数入力30文字以下でしてください。" . '\n';
         }
 
         //確認用パスワードの半角英数・文字数制限チェック
-        if (!preg_match("/^[a-zA-Z0-9]+$/", $passwordConfirm) || mb_strlen($passwordConfirm > 30)) {
-            $alert = $alert . "パスワード確認は半角英数20文字以下で入力してください。" . '\n';
+        if (!ValidationUtil::isHanEisu($passwordconfirm) || !ValidationUtil::isMaxLength($passwordconfirm, 30)) {
+            $alert = $alert . "パスワード確認は半角英数入力30文字以下でしてください。" . '\n';
         }
 
         //パスワード確認チェック
-        if ($password != $passwordConfirm) {
+        if ($password != $passwordconfirm) {
             $alert = $alert . "パスワードが一致していません。";
         }
 

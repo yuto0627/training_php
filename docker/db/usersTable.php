@@ -1,57 +1,51 @@
 <?php
-// require_once('../web/createAccount.php');
-// require_once('../web/createAccountController.php');
 
 class usersTable
 {
-    public function db()
+
+    /**
+     * DB接続
+     * 
+     * @return $dbinfo
+     */
+    public function connectDatabase()
     {
-        $dsn = 'pgsql:dbname=board_database; host=db; port=5555;';
+        $dbname = 'pgsql:dbname=board_database; host=db; port=5555;';
         $dbpassword = 'password';
         $username = 'root';
-        $dbh = new PDO($dsn, $username, $dbpassword);
-        return $dbh;
+        $dbinfo = new PDO($dbname, $username, $dbpassword);
+        return $dbinfo;
     }
 
-
-    public function regist($userId, $password)
+    /**
+     * ユーザー情報新規登録
+     * 
+     * @param String $userid, ユーザーID
+     * @param String $password, パスワード
+     */
+    public function userRegist($userid, $password)
     {
 
         try {
-            $dbo = $this->db();
+            $dbconnect = $this->connectDatabase();
             $sql = "SELECT * FROM users WHERE user_id = :userId;";
-            $stmt = $dbo->prepare($sql);
-            $stmt->bindValue(':userId', $userId);
+            $stmt = $dbconnect->prepare($sql);
+            $stmt->bindValue(':userId', $userid);
             $stmt->execute();
             $users = $stmt->fetchAll();
             foreach ($users as $user) {
                 if ($user['user_id']) {
-                    $errorMessage = '同じユーザーIDが存在します。';
-                    return $errorMessage;
+                    $errormessage = '同じユーザーIDが存在します。';
+                    return $errormessage;
                 }
             }
+            $passwordhash = password_hash($password, PASSWORD_DEFAULT);
             $sql = "INSERT INTO users(user_id, password) VALUES (:userId, :password)";
-            $stmt = $dbo->prepare($sql);
-            $stmt->bindValue(':userId', $userId);
-            $stmt->bindValue(':password', $password);
+            $stmt = $dbconnect->prepare($sql);
+            $stmt->bindValue(':userId', $userid);
+            $stmt->bindValue(':password', $passwordhash);
             $stmt->execute();
-            header('Location: ../../index.php');
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-        }
-    }
-
-    public function login($userId, $password)
-    {
-        try {
-            $dbo = $this->db();
-            $sql = "SELECT * FROM users WHERE seq_no = :seqNo";
-            $stmt = $dbo->prepare($sql);
-            $stmt->bindValue(':seqNo', $seqNo);
-            $stmt->execute();
-            $users = $stmt->fetchAll();
-
-            header('Location: ');
+            header('Location:/');
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
