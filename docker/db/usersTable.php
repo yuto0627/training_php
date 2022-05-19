@@ -7,7 +7,6 @@ class usersTable
      * 
      * @return mixed $dbinfo
      */
-
     public function connectDatabase()
     {
         $dbname = "pgsql:dbname=board_database; host=db; port=5555;";
@@ -24,7 +23,6 @@ class usersTable
      * @param string $userid　ユーザーID
      * @param string $password パスワード
      */
-
     public function userRegist($userid, $password)
     {
         try {

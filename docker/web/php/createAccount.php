@@ -1,3 +1,24 @@
+<?php
+
+require_once('Validation.php');
+require_once('../../db/usersTable.php');
+
+// 登録ボタンが押された時
+if (isset($_POST["signUp"])) {
+    $userid = htmlspecialchars($_POST["userId"], ENT_QUOTES);
+    $password = ($_POST["password"]);
+    $passwordcheck = ($_POST["passwordCheck"]);
+    $validationcheck = new Validation();
+    $errormessage = $validationcheck->userRegistValidation($userid, $password, $passwordcheck);
+    if (!empty($errormessage)) {
+        echo "<script>alert('$errormessage')</script>";
+    } else {
+        $data = new usersTable();
+        $data->userRegist($userid, $password);
+    }
+}
+?>
+
 <html>
 
 <head>

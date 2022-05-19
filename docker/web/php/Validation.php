@@ -10,7 +10,6 @@ class Validation
      * 
      * @return string $errors
      */
-
     public function userRegistValidation($userid, $password, $passwordcheck)
     {
         $errors = '';
