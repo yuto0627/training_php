@@ -7,12 +7,12 @@
 <body>
     <div class="header-left">
         <header class="header-letter">
-            Bulltin Board
+            Bulletin Board
         </header>
     </div>
 
     <div class="login-screen upper">
-        <h1>Bulltin Board</h1>
+        <h1>Bulletin Board</h1>
         <p>ログイン画面</p>
     </div>
 

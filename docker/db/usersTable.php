@@ -3,23 +3,38 @@
 class usersTable
 {
 
-    public function db()
+    /**
+     * データベースの接続用メソッド
+     * 
+     * @return $dbinfo
+     */
+
+    public function connectDatabase()
     {
-        $dsn = "pgsql:dbname=board_database; host=db; port=5555;";
+        $dbname = "pgsql:dbname=board_database; host=db; port=5555;";
         $user = 'root';
         $dbpassword = 'password';
-        $dbh = new PDO($dsn, $user, $dbpassword);
-        return $dbh;
+        $dbinfo = new PDO($dbname, $user, $dbpassword);
+        return $dbinfo;
     }
 
-    public function regist($userId, $passwordHash)
+
+    /**
+     * ユーザーの新規登録処理
+     * 
+     * @param string $userid　ユーザーID
+     * @param string $password パスワード
+     *
+     */
+
+    public function userRegist($userid, $password)
     {
         try {
-            $dbo = $this->db();
+            $dbconnect = $this->connectDatabase();
 
             $sql = "SELECT * FROM users WHERE user_id=:userId;";
-            $stmt = $dbo->prepare($sql);
-            $stmt->bindValue(':userId', $userId);
+            $stmt = $dbconnect->prepare($sql);
+            $stmt->bindValue(':userId', $userid);
             $stmt->execute();
             $users = $stmt->fetchAll();
             foreach ($users as $user) {
@@ -29,10 +44,11 @@ class usersTable
                 }
             }
 
+            $passwordhash = password_hash($password, PASSWORD_DEFAULT);
             $sql = "INSERT INTO users(user_id, password) VALUES (:userId, :password)";
-            $stmt = $dbo->prepare($sql);
-            $stmt->bindValue(':userId', $userId);
-            $stmt->bindValue(':password', $passwordHash);
+            $stmt = $dbconnect->prepare($sql);
+            $stmt->bindValue(':userId', $userid);
+            $stmt->bindValue(':password', $passwordhash);
             $stmt->execute();
 
             header('Location:/');

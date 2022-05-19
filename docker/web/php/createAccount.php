@@ -1,22 +1,20 @@
 <?php
 
-require_once('validationUtil.php');
+require_once('Validation.php');
 require_once('../../db/usersTable.php');
 
 // 登録ボタンが押された時
 if (isset($_POST["signUp"])) {
-    $userId = htmlspecialchars($_POST["userId"], ENT_QUOTES);
+    $userid = htmlspecialchars($_POST["userId"], ENT_QUOTES);
     $password = ($_POST["password"]);
-    $passwordCheck = ($_POST["passwordCheck"]);
-    $passwordHash = password_hash($_POST["password"], PASSWORD_DEFAULT);
-    $passwordCheckHash = password_hash($_POST["passwordCheck"], PASSWORD_DEFAULT);
-    $validationCheck = new validationUtil();
-    $errorMessage = $validationCheck->validation($userId, $password, $passwordCheck);
-    if (!empty($errorMessage)) {
-        echo "<script>alert('$errorMessage')</script>";
+    $passwordcheck = ($_POST["passwordCheck"]);
+    $validationcheck = new Validation();
+    $errormessage = $validationcheck->userRegistValidation($userid, $password, $passwordcheck);
+    if (!empty($errormessage)) {
+        echo "<script>alert('$errormessage')</script>";
     } else {
         $data = new usersTable();
-        $data->regist($userId, $passwordHash);
+        $data->userRegist($userid, $password);
     }
 }
 ?>
@@ -51,13 +49,12 @@ if (isset($_POST["signUp"])) {
 
         <form action="" method="post">
             <div class="createaccount-screen">
-                <input type="text" maxlength="20" pattern=“^[0-9A-Za-z]+$” name="userId" placeholder="ユーザーID">
+                <input type="text" name="userId" placeholder="ユーザーID">
             </div>
 
             <div class="login-screen">
-                <input type="password" maxlength="30" pattern=“^[0-9A-Za-z]+$” name="password" placeholder="パスワード">
-                <input type="password" maxlength="30" pattern=“^[0-9A-Za-z]+$” name="passwordCheck"
-                    placeholder="パスワード確認">
+                <input type="password" name="password" placeholder="パスワード">
+                <input type="password" name="passwordCheck" placeholder="パスワード確認">
             </div>
 
             <div class="login-button">
