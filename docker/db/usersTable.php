@@ -2,11 +2,10 @@
 
 class usersTable
 {
-
     /**
      * データベースの接続用メソッド
      * 
-     * @return $dbinfo
+     * @return mixed $dbinfo
      */
 
     public function connectDatabase()
@@ -24,7 +23,6 @@ class usersTable
      * 
      * @param string $userid　ユーザーID
      * @param string $password パスワード
-     *
      */
 
     public function userRegist($userid, $password)

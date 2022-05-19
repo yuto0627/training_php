@@ -5,6 +5,12 @@ require_once("ValidationUtil.php");
 class Validation
 {
 
+    /**
+     * ユーザー登録のバリデーション用メソッド
+     * 
+     * @return string $errors
+     */
+
     public function userRegistValidation($userid, $password, $passwordcheck)
     {
         $errors = '';
