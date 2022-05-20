@@ -47,20 +47,18 @@ if (isset($_POST["signUp"])) {
             <p>ユーザーIDとパスワードを登録してください。</p>
         </div>
 
-        <div class="createaccount-screen">
-            <form method="post" action="login">
-                <input type="text" placeholder="ユーザーID">
-            </form>
-        </div>
-
-        <div class="login-screen">
-            <input type="text" placeholder="パスワード">
-            <input type="text" placeholder="パスワード確認">
-        </div>
-
-        <div class="login-button">
-            <button onclick="location.href='login'">登録する</button>
-        </div>
+        <form method="post" action="">
+            <div class="createaccount-screen">
+                <input type="text" name="userId" placeholder="ユーザーID">
+            </div>
+            <div class="login-screen">
+                <input type="password" name="password" placeholder="パスワード">
+                <input type="password" name="passwordCheck" placeholder="パスワード確認">
+            </div>
+            <div class="login-button">
+                <input type="submit" name="signUp" value="登録する">
+            </div>
+        </form>
     </div>
 </body>
 

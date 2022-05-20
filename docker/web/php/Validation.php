@@ -1,20 +1,24 @@
 <?php
 
-require_once("ValidationUtil.php");
+require_once("validationUtil.php");
+// require_once("../../db/usersTable.php");
 
 class Validation
 {
-
     /**
-     * ユーザー登録のバリデーション用メソッド
+     * 登録時のバリデーションチェック
      * 
-     * @return string $errors
+     * @param int $userid ユーザーID
+     * @param int $password
+     * @param int $passwordcheck
+     * 
+     * @return string $errors 
      */
     public function userRegistValidation($userid, $password, $passwordcheck)
     {
         $errors = '';
 
-        if (empty($userid || $password || $passwordcheck)) {
+        if (empty($userid && $password && $passwordcheck)) {
             $errors .= "項目に未記入のものがあります。" . '\n';
         }
 
@@ -35,6 +39,39 @@ class Validation
         }
         if (!empty($errors)) {
             return $errors;
+        }
+    }
+
+    /**
+     * ログイン時のバリデーションチェック
+     * 
+     * @param int $loginuserid ユーザーID
+     * @param int $loginpassword パスワード
+     * 
+     * @return string　$loginerrors
+     */
+    public function loginValidation($loginuserid, $loginpassword)
+    {
+        $loginerrors = '';
+        $logindata = new usersTable();
+        $logininfo = $logindata->userLogin($loginuserid);
+
+        if (empty($loginuserid && $loginpassword)) {
+            $loginerrors .= "項目に未記入のものがあります。" . '\n';
+        }
+
+        if (!$logininfo) {
+            $loginerrors .= 'ユーザーIDが存在しません。' . '\n';
+        }
+
+        if (password_verify($loginpassword, $logininfo['password'])) {
+            $_SESSION['userId'] = $logininfo['user_id'];
+        } else {
+            $loginerrors .= 'ユーザーIDかパスワードが正しくありません。' . '\n';
+        }
+
+        if (!empty($loginerrors)) {
+            return $loginerrors;
         }
     }
 }

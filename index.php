@@ -1,3 +1,24 @@
+<?php
+
+require_once('docker/web/php/Validation.php');
+require_once('docker/db/usersTable.php');
+
+// ログインボタンが押された時
+session_start();
+if (isset($_POST["login"])) {
+    $loginuserid = htmlspecialchars($_POST["loginUserId"]);
+    $loginpassword = ($_POST["loginPassword"]);
+    $loginvalidationcheck = new Validation();
+    $loginerrormessege = $loginvalidationcheck->loginValidation($loginuserid, $loginpassword);
+    if (!empty($loginerrormessege)) {
+        echo "<script>alert('$loginerrormessege')</script>";
+    } else {
+        header('Location:docker/web/php/post.php');
+    }
+}
+
+?>
+
 <html>
 
 <head>
@@ -22,16 +43,16 @@
             <p>ユーザーIDとパスワードを登録してください。</p>
         </div>
 
-        <div class="login-screen">
-            <form method="post" action="login">
-                <input type="text" maxlength="20" pattern=“^[0-9A-Za-z]+$” placeholder="ユーザーID">
-                <input type="password" maxlength="30" pattern=“^[0-9A-Za-z]+$” placeholder="パスワード">
-            </form>
-        </div>
+        <form method="post" action="">
+            <div class="login-screen">
+                <input type="text" name="loginUserId" maxlength="20" placeholder="ユーザーID">
+                <input type="password" name="loginPassword" maxlength="30" placeholder="パスワード">
+            </div>
 
-        <div class="login-button">
-            <button onclick="location.href='login'">ログインする</button>
-        </div>
+            <div class="login-button">
+                <input type="submit" name="login" value="ログインする">
+            </div>
+        </form>
 
         <a href="/docker/web/php/createAccount.php">新規追加はこちら</a>
 
