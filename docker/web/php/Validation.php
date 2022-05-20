@@ -38,4 +38,42 @@ class Validation
             return $alert;
         }
     }
+
+    /**
+     * ログイン時のバリデーションチェック
+     *
+     * @param String $userid
+     * @param String $password
+     *
+     * @return String $loginalert エラーメッセージ
+     */
+    public function userLoginValidation($loginuserid, $loginpassword)
+    {
+        $loginalert = "";
+        $loginvalid = new usersTable();
+        $loginvalidation = $loginvalid->userLogin($loginuserid, $loginpassword);
+
+        //未入力チェック
+        if (empty($loginuserid || $loginpassword)) {
+            $loginalert = $loginalert . "未入力の項目があります。" . '\n';
+        }
+
+        // ユーザがいない
+        if (!$loginvalidation) {
+            echo 'ユーザ名かパスワードが正しくありません。';
+        }
+
+        if (password_verify($loginpassword, $loginvalidation['password'])) {
+            //DBのユーザー情報をセッションに保存
+            $_SESSION['loginuserid'] = $loginvalidation['user_id'];
+            $_SESSION['loginpassword'] = $loginvalidation['password'];
+        } else {
+            $loginalert = $loginalert . 'メールアドレスかパスワードが間違っています。';
+        }
+
+        //エラーが１つでもヒットしていたらエラー文表示
+        if (!empty($loginalert)) {
+            return $loginalert;
+        }
+    }
 }
