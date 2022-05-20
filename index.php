@@ -7,12 +7,12 @@
 <body>
     <div class="header-left">
         <header class="header-letter">
-            Bulltin Board
+            Bulletin Board
         </header>
     </div>
 
     <div class="login-screen upper">
-        <h1>Bulltin Board</h1>
+        <h1>Bulletin Board</h1>
         <p>ログイン画面</p>
     </div>
 
@@ -24,8 +24,8 @@
 
         <div class="login-screen">
             <form method="post" action="login">
-                <input type="text" placeholder="ユーザーID">
-                <input type="text" placeholder="パスワード">
+                <input type="text" maxlength="20" pattern=“^[0-9A-Za-z]+$” placeholder="ユーザーID">
+                <input type="password" maxlength="30" pattern=“^[0-9A-Za-z]+$” placeholder="パスワード">
             </form>
         </div>
 
