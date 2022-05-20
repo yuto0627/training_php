@@ -1,7 +1,6 @@
 <?php
 
 require_once("validationUtil.php");
-// require_once("../../db/usersTable.php");
 
 class Validation
 {
@@ -18,7 +17,7 @@ class Validation
     {
         $errors = '';
 
-        if (empty($userid && $password && $passwordcheck)) {
+        if (empty($userid) || empty($password) || empty($passwordcheck)) {
             $errors .= "項目に未記入のものがあります。" . '\n';
         }
 
@@ -56,7 +55,7 @@ class Validation
         $logindata = new usersTable();
         $logininfo = $logindata->userLogin($loginuserid);
 
-        if (empty($loginuserid && $loginpassword)) {
+        if (empty($loginuserid) || empty($loginpassword)) {
             $loginerrors .= "項目に未記入のものがあります。" . '\n';
         }
 
