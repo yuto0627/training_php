@@ -1,3 +1,24 @@
+<?php
+
+require_once('Validation.php');
+require_once('../../db/usersTable.php');
+
+// 登録ボタンが押された時
+if (isset($_POST["signUp"])) {
+    $userid = htmlspecialchars($_POST["userId"], ENT_QUOTES);
+    $password = ($_POST["password"]);
+    $passwordcheck = ($_POST["passwordCheck"]);
+    $validationcheck = new Validation();
+    $errormessage = $validationcheck->userRegistValidation($userid, $password, $passwordcheck);
+    if (!empty($errormessage)) {
+        echo "<script>alert('$errormessage')</script>";
+    } else {
+        $data = new usersTable();
+        $data->userRegist($userid, $password);
+    }
+}
+?>
+
 <html>
 
 <head>
@@ -7,7 +28,7 @@
 <body>
     <div class="header-left">
         <header class="header-letter">
-            Bulltin Board
+            Bulletin Board
         </header>
     </div>
 
@@ -26,23 +47,18 @@
             <p>ユーザーIDとパスワードを登録してください。</p>
         </div>
 
-        <div class="createaccount-screen">
-            <form method="post" action="login">
-                <input type="text" placeholder="ユーザーID">
-            </form>
-        </div>
-
-        <div class="login-screen">
-            <input type="text" placeholder="パスワード">
-            <input type="text" placeholder="パスワード確認">
-            <<<<<<< Updated upstream=======</form>
-                >>>>>>> Stashed changes
-        </div>
-
-        <div class="login-button">
-            <button onclick="location.href='login'">登録する</button>
-        </div>
-        <<<<<<< Updated upstream=======>>>>>>> Stashed changes
+        <form method="post" action="">
+            <div class="createaccount-screen">
+                <input type="text" name="userId" placeholder="ユーザーID">
+            </div>
+            <div class="login-screen">
+                <input type="password" name="password" placeholder="パスワード">
+                <input type="password" name="passwordCheck" placeholder="パスワード確認">
+            </div>
+            <div class="login-button">
+                <input type="submit" name="signUp" value="登録する">
+            </div>
+        </form>
     </div>
 </body>
 
