@@ -54,4 +54,27 @@ class usersTable
             echo $e->getMessage();
         }
     }
+
+    /**
+     * ログイン処理
+     * 
+     * @param string $userid　ユーザーID
+     * @param string $password パスワード
+     *
+     * @return mixed $logindata
+     */
+    public function userLogin($loginuserid)
+    {
+        try {
+            $dbconnect = $this->connectDatabase();
+            $sql = "SELECT * FROM users WHERE user_id=:userId";
+            $loginconnect = $dbconnect->prepare($sql);
+            $loginconnect->bindValue(':userId', $loginuserid);
+            $loginconnect->execute();
+            $logindata = $loginconnect->fetch();
+            return $logindata;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
 }
